@@ -51,7 +51,7 @@ class GithubSearchService
 
         $data = $response->json();
 
-        Log::debug(json_encode($data));
+        Log::debug($data);
 
         Cache::put($cacheKey, $data, 3600);
 
