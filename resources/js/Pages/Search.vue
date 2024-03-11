@@ -105,8 +105,6 @@ const updateSelectedUsers = async (user, newIsSelectedStatus, languages) => {
         is_selected: newIsSelectedStatus
     };
 
-    console.log(payload);
-
     try {
         await axios.post('/heroes/selection', payload);
 
@@ -137,8 +135,6 @@ watch(() => props.results.users, (newUsers) => {
 
 onMounted(() => {
     window.addEventListener('scroll', checkScroll);
-
-    console.log(props.results);
 });
 
 onUnmounted(() => {

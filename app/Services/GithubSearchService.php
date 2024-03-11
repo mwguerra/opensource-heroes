@@ -16,7 +16,7 @@ class GithubSearchService
         $cacheKey = 'github_search_' . md5(serialize($filters));
 
         //////////////////////
-        Cache::forget($cacheKey);
+        // Cache::forget($cacheKey);
         //////////////////////
 
         $cachedResponse = Cache::get($cacheKey);
@@ -50,8 +50,6 @@ class GithubSearchService
         }
 
         $data = $response->json();
-
-        Log::debug($data);
 
         Cache::put($cacheKey, $data, 3600);
 
