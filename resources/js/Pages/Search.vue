@@ -137,6 +137,8 @@ watch(() => props.results.users, (newUsers) => {
 
 onMounted(() => {
     window.addEventListener('scroll', checkScroll);
+
+    console.log(props);
 });
 
 onUnmounted(() => {
