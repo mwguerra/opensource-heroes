@@ -1,0 +1,1 @@
+1710170758a:1:{s:4:"data";a:3:{s:6:"search";a:3:{s:9:"userCount";i:0;s:8:"pageInfo";a:4:{s:9:"endCursor";N;s:11:"startCursor";N;s:11:"hasNextPage";b:0;s:15:"hasPreviousPage";b:0;}s:5:"nodes";a:0:{}}s:6:"viewer";a:1:{s:5:"login";s:11:"devguerra16";}s:9:"rateLimit";a:4:{s:5:"limit";i:5000;s:9:"remaining";i:4988;s:4:"used";i:12;s:7:"resetAt";s:20:"2024-03-11T14:57:42Z";}}}

@@ -1,0 +1,127 @@
+query Search($query: String!, $first: Int!, $after: String) {
+    search(query: $query, type: USER, first: $first, after: $after) {
+        userCount
+        pageInfo {
+            endCursor
+            startCursor
+            hasNextPage
+            hasPreviousPage
+        }
+        nodes {
+            ...on User {
+                login
+                name
+                hasSponsorsListing
+                monthlyEstimatedSponsorsIncomeInCents
+                avatarUrl
+                email
+                status {
+                    emoji
+                    message
+                }
+                updatedAt
+                followers {
+                    totalCount
+                }
+                twitterUsername
+                bioHTML
+                isHireable
+                websiteUrl
+                location
+                isGitHubStar
+                topRepositories(first: 10, orderBy: { field:STARGAZERS, direction:DESC }) {
+                    nodes {
+                        name
+                        primaryLanguage {
+                            name
+                            color
+                        }
+                        languages(first: 10) {
+                            nodes {
+                                name
+                                color
+                            }
+                        }
+                    }
+                }
+                pinnedItems(first: 6, types: [REPOSITORY, GIST]) {
+                    totalCount
+                    nodes {
+                        ... on Repository {
+                            __typename
+                            name
+                            description
+                            primaryLanguage {
+                                name
+                                color
+                            }
+                            languages(first:10) {
+                                totalCount
+                                nodes {
+                                    name
+                                    color
+                                }
+                            }
+                            stargazers {
+                                totalCount
+                            }
+                        }
+                        ... on Gist {
+                            __typename
+                            name
+                            description
+                            files {
+                                name
+                                language {
+                                    name
+                                    color
+                                }
+                            }
+                            stargazers {
+                                totalCount
+                            }
+                        }
+                    }
+                }
+                contributionsCollection {
+                    totalCommitContributions
+                    totalIssueContributions
+                    totalPullRequestContributions
+                    totalPullRequestReviewContributions
+                    totalRepositoryContributions
+                }
+                repositoriesContributedTo(first: 10, includeUserRepositories: false) {
+                    totalCount
+                    nodes {
+                        name
+                        owner {
+                            login
+                        }
+                        stargazers {
+                            totalCount
+                        }
+                        languages(first:10) {
+                            totalCount
+                            nodes {
+                                name
+                                color
+                            }
+                        }
+                    }
+                }
+                repositories(privacy: PUBLIC) {
+                    totalCount
+                }
+            }
+        }
+    }
+    viewer {
+        login
+    }
+    rateLimit {
+        limit
+        remaining
+        used
+        resetAt
+    }
+}
