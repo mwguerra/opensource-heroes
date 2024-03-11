@@ -5,6 +5,7 @@ namespace App\Services;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class GithubSearchService
 {
@@ -15,7 +16,7 @@ class GithubSearchService
         $cacheKey = 'github_search_' . md5(serialize($filters));
 
         //////////////////////
-        // Cache::forget($cacheKey);
+        Cache::forget($cacheKey);
         //////////////////////
 
         $cachedResponse = Cache::get($cacheKey);
@@ -49,6 +50,8 @@ class GithubSearchService
         }
 
         $data = $response->json();
+
+        Log::debug(json_encode($data));
 
         Cache::put($cacheKey, $data, 3600);
 
