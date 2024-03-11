@@ -36,7 +36,7 @@ class GithubSearchService
             $variables['after'] = $filters['after'];
         }
 
-        $response = Http::withHeaders([
+        $response = Http::withOptions(['verify' => false])->withHeaders([
             'Content-Type' => 'application/json',
             'Authorization' => 'Bearer ' . config('services.github.token'),
         ])->post($this->graphqlEndpoint, [
