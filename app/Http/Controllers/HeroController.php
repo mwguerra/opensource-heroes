@@ -44,8 +44,6 @@ class HeroController extends Controller
             'pinned_items_stars_count' => 'nullable|integer|min:0',
         ]);
 
-        dump($request->all());
-        dump($validated);
         // Begin transaction to ensure data integrity
         DB::beginTransaction();
 
