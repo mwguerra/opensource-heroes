@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Hero;
 use App\Models\Language;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -44,7 +43,6 @@ class HeroController extends Controller
             'pinned_items_stars_count' => 'nullable|integer|min:0',
         ]);
 
-        // Begin transaction to ensure data integrity
         DB::beginTransaction();
 
         try {
@@ -72,7 +70,7 @@ class HeroController extends Controller
 
                 // Update languages for the hero and set the primary language
                 if (isset($validated['languages'])) {
-                    // Sync all languages first without considering the 'is_primary' flag
+                    // Sync all languages first without considering the is_primary flag
                     $languageIds = collect($validated['languages'])->map(function ($language) {
                         $lang = Language::firstOrCreate([
                             'name' => $language['name'],
@@ -83,10 +81,10 @@ class HeroController extends Controller
                         return $lang->id;
                     })->all();
 
-                    // Use sync method without 'is_primary' flag
+                    // Use sync method without the is_primary flag
                     $hero->languages()->sync($languageIds);
 
-                    // Now set the 'is_primary' flag for the primary language
+                    // Set the is_primary flag for the primary language
                     if (isset($validated['primary_language'])) {
                         $primaryLanguage = Language::where('name', $validated['primary_language']['name'])->first();
 
@@ -101,13 +99,11 @@ class HeroController extends Controller
                     $hero->languages()->detach();
                 }
 
-                // Update PinnedItemsMeta
+                // Update PinnedItems
                 $hero->pinnedItemsMeta()->updateOrCreate([], [
                     'count' => $validated['pinned_items_count'] ?? null,
                     'star_count' => $validated['pinned_items_stars_count'] ?? null,
                 ]);
-
-                // Handle PinnedItems, assuming we replace all existing ones
                 $hero->pinnedItems()->delete();
                 if (!empty($validated['pinned_items'])) {
                     foreach ($validated['pinned_items'] as $item) {

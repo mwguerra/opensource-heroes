@@ -74,7 +74,6 @@ const fetchMoreUsers = async () => {
 };
 
 const updateSelectedUsers = async (user, newIsSelectedStatus, languages) => {
-    // Construct the payload with correct column names
     const payload = {
         login: user.login,
         name: user.name,
