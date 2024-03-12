@@ -1,5 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
+import { ArrowUpIcon } from "@heroicons/vue/24/solid";
 
 defineProps({
     canLogin: Boolean,
@@ -12,21 +13,32 @@ defineProps({
 <template>
     <Head title="Welcome" />
 
-    <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-        <div v-if="canLogin" class="sm:fixed sm:top-0 sm:end-0 p-6 text-end z-10">
+    <div class="relative flex flex-col min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+        <div v-if="canLogin" class="p-6 text-end flex justify-end">
             <Link v-if="$page.props.auth.user" :href="route('heroes.index')" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</Link>
 
             <template v-else>
-                <Link :href="route('login')" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</Link>
+                <nav class="flex justify-between px-4 py-3 space-x-4">
+                    <Link :href="route('login')" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</Link>
 
-                <Link v-if="canRegister" :href="route('register')" class="ms-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</Link>
+                    <div class="relative">
+                        <Link v-if="canRegister" :href="route('register')" class="ms-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</Link>
+                        <div class="absolute right-0 top-full flex flex-col items-end p-2 gap-1">
+                            <ArrowUpIcon class="h-5 w-5 fill-blue-700" aria-hidden="true" />
+                            <span class="w-64 text-indigo-700 font-semibold leading-5">Click "Register" to create your account and try the app.</span>
+                        </div>
+                    </div>
+
+                </nav>
+
             </template>
         </div>
 
-        <div class="max-w-7xl mx-auto p-6 lg:p-8">
-            <div class="flex justify-center items-center">
-                <h1 class="text-2xl">Open Source Heroes</h1>
-            </div>
+        <div class="max-w-7xl mx-auto p-6 lg:p-8 flex-1 flex flex-col gap-2 justify-center items-center">
+            <h1 class="text-2xl">Open Source Heroes</h1>
+            <p class="text-gray-600 dark:text-gray-400 max-w-2xl text-center">
+                Open Source Heroes is an application that allows you to search for open source developers, also known as Open Source Heroes.
+            </p>
         </div>
     </div>
 </template>
