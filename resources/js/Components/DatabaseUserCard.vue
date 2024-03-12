@@ -27,13 +27,15 @@ const emit = defineEmits(['delete-user']);
             <h3 class="flex flex-col my-0 text-base font-medium leading-6 decoration-0">
                 <span class="flex items-center truncate">
                     <a
-                        :href="props.user.github_url"
+                        :href="`https://github.com/${props.user.login}`"
+                        target="_blank"
                         class="text-blue-600 whitespace-nowrap bg-transparent cursor-pointer decoration-0"
                     >
                         <span>{{ props.user.name }}</span>
                     </a>
                     <a
-                        :href="props.user.github_url"
+                        :href="`https://github.com/${props.user.login}`"
+                        target="_blank"
                         class="text-blue-600 whitespace-nowrap bg-transparent cursor-pointer decoration-0"
                     >
                         <span class="ml-1 font-light text-gray-500">
