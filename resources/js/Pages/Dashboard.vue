@@ -63,8 +63,8 @@ const deleteHero = async (hero) => {
                 </div>
                 <div v-else class="text-center">
                     <PuzzlePieceIcon class="mx-auto h-12 w-12 text-gray-400" />
-                    <h3 class="mt-2 text-lg font-semibold text-gray-900">No opensource developers here</h3>
-                    <p class="mt-1 text-md text-gray-500">Get started by searching and selecting some for analysis.</p>
+                    <h3 class="mt-2 text-lg font-semibold text-gray-900 dark:text-gray-200">No opensource developers here</h3>
+                    <p class="mt-1 text-md text-gray-500 dark:text-gray-400">Get started by searching and selecting some for analysis.</p>
                     <div class="mt-6">
                         <button
                             type="button"

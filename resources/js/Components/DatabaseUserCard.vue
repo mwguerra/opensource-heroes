@@ -11,7 +11,7 @@ const emit = defineEmits(['delete-user']);
 <template>
     <div
         class="flex p-4 w-full leading-5 break-words rounded-md border border-solid text-neutral-800 justify-between"
-        :class="props.selected ? 'border-blue-700 bg-white' : 'border-gray-300'"
+        :class="props.selected ? 'border-blue-700 bg-white' : 'border-gray-300 bg-white/70'"
     >
         <!-- Avatar -->
         <div class="flex-shrink-0 flex items-center">

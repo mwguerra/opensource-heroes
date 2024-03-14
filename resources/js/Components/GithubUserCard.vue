@@ -21,7 +21,7 @@
 <template>
     <div
         class="flex p-4 w-full leading-5 break-words rounded-md border border-solid text-neutral-800 justify-between"
-        :class="props.selected ? 'border-blue-700 bg-white' : 'border-gray-300'"
+        :class="props.selected ? 'border-blue-700 bg-white dark:bg-white/10' : 'border-gray-300'"
     >
         <!-- Avatar -->
         <div class="flex-shrink-0 flex items-center">
@@ -38,13 +38,13 @@
                 <span class="flex items-center truncate">
                     <a
                         :href="props.user.github_url"
-                        class="text-blue-600 whitespace-nowrap bg-transparent cursor-pointer decoration-0"
+                        class="text-blue-600 dark:text-blue-200 whitespace-nowrap bg-transparent cursor-pointer decoration-0"
                     >
                         <span>{{ props.user.name }}</span>
                     </a>
                     <a
                         :href="props.user.github_url"
-                        class="text-blue-600 whitespace-nowrap bg-transparent cursor-pointer decoration-0"
+                        class="text-blue-600 dark:text-blue-200 whitespace-nowrap bg-transparent cursor-pointer decoration-0"
                     >
                         <span class="ml-1 font-light text-gray-500">
                             {{ props.user.login }}
@@ -53,16 +53,16 @@
                 </span>
             </h3>
             <!-- Biography -->
-            <div class="mt-1 text-sm">
+            <div class="mt-1 text-sm dark:text-gray-200">
                 <span v-html="props.user.bio_html" />
             </div>
             <!-- Metadata -->
             <ul class="flex flex-wrap items-center pl-0 mt-1 mb-0">
-                <li class="flex items-center text-xs leading-4 text-left text-gray-500 list-none">
+                <li class="flex items-center text-xs leading-4 text-left text-gray-500 dark:text-blue-200 list-none">
                     {{ props.user.location }}
                 </li>
-                <span aria-hidden="true" class="mx-2 text-gray-500">·</span>
-                <li class="flex items-center text-xs leading-4 text-left text-gray-500 list-none">
+                <span aria-hidden="true" class="mx-2 text-gray-500 dark:text-white">·</span>
+                <li class="flex items-center text-xs leading-4 text-left text-gray-500 dark:text-blue-200 list-none">
                     <svg
                         aria-hidden="true"
                         focusable="false"
@@ -84,8 +84,8 @@
                         {{ props.user.repositories_count }}
                     </span>
                 </li>
-                <span aria-hidden="true" class="mx-2 text-gray-500">·</span>
-                <li class="flex items-center text-xs leading-4 text-left text-gray-500 list-none">
+                <span aria-hidden="true" class="mx-2 text-gray-500 dark:text-white">·</span>
+                <li class="flex items-center text-xs leading-4 text-left text-gray-500 dark:text-blue-200 list-none">
                     <svg
                         aria-hidden="true"
                         focusable="false"
@@ -113,7 +113,7 @@
                 <li
                     v-for="language in languages"
                     :key="language.name"
-                    class="flex items-center text-xs leading-4 text-left text-gray-900 list-none px-2 py-1 rounded-full border"
+                    class="flex items-center text-xs leading-4 text-left text-gray-900 dark:text-white/80 list-none px-2 py-1 rounded-full border"
                     :style="{ borderColor: language.color, backgroundColor: language.color + '50' }"
                 >
                     {{ language.name }} <span v-if="language.name === primaryLanguage?.name" class="ml-1">⭐</span>

@@ -9,7 +9,7 @@ const props = defineProps({
 
 <template>
     <div class="relative">
-        <div class="bg-transparent dark:bg-zinc-800 p-4 ring-1 ring-zinc-900/5 rounded-md w-full border-gray-200 border-solid border">
+        <div class="bg-transparent dark:bg-zinc-600 p-4 ring-1 ring-zinc-900/5 rounded-md w-full border-gray-200 border-solid border">
             <div class="flex items-center space-x-4 animate-pulse">
                 <div class="rounded-full bg-zinc-200 dark:bg-zinc-700 w-16 h-16 aspect-square flex-shrink-0"></div>
                 <div class="flex-1 space-y-6 py-1">

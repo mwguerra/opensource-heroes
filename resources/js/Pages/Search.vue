@@ -76,10 +76,10 @@ const fetchMoreUsers = async () => {
 const updateSelectedUsers = async (user, newIsSelectedStatus, languages) => {
     const payload = {
         login: user.login,
-        name: user.name,
+        name: user.name ?? user.login,
         email: user.email,
         bio_html: user.bio_html,
-        location: user.location,
+        location: user.location ?? 'Location not defined by the developer',
         languages: languages.languages,
         primary_language: languages.primary_language,
         pinned_languages: user.pinned_languages,
@@ -157,7 +157,7 @@ onUnmounted(() => {
                     <div class="sm:w-64" />
 
                     <!-- Results Header -->
-                    <div class="flex-1">
+                    <div class="flex-1 dark:text-gray-200">
                         <p>{{ props.results.userCount }} Heroes Found.</p>
                     </div>
                 </div>
@@ -170,20 +170,20 @@ onUnmounted(() => {
                     <!-- Filters -->
                     <div class="flex flex-col gap-4 sm:w-64">
                         <div>
-                            <label for="location-input" class="block text-sm font-medium leading-6 text-gray-900">Location</label>
+                            <label for="location-input" class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">Location</label>
                             <div class="mt-2">
                                 <input type="text" name="location-input" id="location-input" v-model="location"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200 sm:text-sm sm:leading-6" placeholder="Example: Brazil" />
                             </div>
                         </div>
 
                         <div>
-                            <label for="languages-input" class="block text-sm font-medium leading-6 text-gray-900 mb-2">Languages</label>
+                            <label for="languages-input" class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200 mb-2">Languages</label>
                             <TagInput v-model="languages" placeholder="Example: php" />
                         </div>
 
                         <Disclosure as="div" v-slot="{ open }">
                             <div>
-                                <DisclosureButton class="flex w-full items-start justify-between text-sm text-left font-medium leading-6 text-gray-900">
+                                <DisclosureButton class="flex w-full items-start justify-between text-sm text-left font-medium leading-6 text-gray-900 dark:text-gray-200">
                                     <span>Advanced Search</span>
                                     <span class="ml-6 flex h-7 items-center">
                                       <ChevronDownIcon v-if="!open" class="h-4 w-4" aria-hidden="true" />
@@ -193,11 +193,11 @@ onUnmounted(() => {
                             </div>
                             <DisclosurePanel as="div" class="mt-2 p-4 border border-gray-400 rounded-md flex flex-col gap-4">
                                 <div class="inline-flex items-center gap-4">
-                                    <label for="location-input" class="block text-sm font-medium leading-6 text-gray-900">Followers</label>
+                                    <label for="location-input" class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">Followers</label>
                                     <input type="text" name="location-input" id="location-input" v-model="followers"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200 sm:text-sm sm:leading-6" placeholder=">50 (default)" />
                                 </div>
                                 <div class="inline-flex items-center gap-4">
-                                    <label for="location-input" class="block text-sm font-medium leading-6 text-gray-900">Repositories</label>
+                                    <label for="location-input" class="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">Repositories</label>
                                     <input type="text" name="location-input" id="location-input" v-model="repositories"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500 disabled:ring-gray-200 sm:text-sm sm:leading-6" placeholder=">10 (default)" />
                                 </div>
                             </DisclosurePanel>
